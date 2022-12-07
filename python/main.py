@@ -1,4 +1,6 @@
 import flask
+from conexion_mysql import connection_mysql
+from conexion_postgres import connection_postgresql
 
 app=flask.Flask(__name__)
 
