@@ -1,17 +1,10 @@
 import petl as etl 
 import pandas as pd
 import matplotlib.pyplot as plt
-import psycopg2
-
 
 table1 = etl.fromcsv('C:/Users/wendy/Documents/7mo semestre/Almacenes de Datos/proyecto/python/recursos/atus_anual_2018.csv')
 
-"""comentario en python requiere de varias lineas."""
-conn = psycopg2.connect(
-    host='localhost',
-    user='postgres',
-    password='wendy123',
-    database='accidentes')
+"""comentario en python que requiere de varias lineas."""
 
 def df_2018():
     ##-> Especificación de la ubicación de la ruta
@@ -29,7 +22,7 @@ def df_2018():
     for col in cols_cat:
         print(f'Columna {col}:{data_2018[col].nunique()} subniveles')
 
-    ##-> Eliminación de columnas irreevantes para el propósito
+    ##-> Eliminación de columnas irrelevantes para el propósito
     data_2018.drop(columns=['COBERTURA','AUTOMOVIL','CAMPASAJ','MICROBUS', 'PASCAMION', 'OMNIBUS', 'TRANVIA','CAMIONETA','CAMION',
     'TRACTOR','FERROCARRI', 'MOTOCICLET', 'BICICLETA','OTROVEHIC', 'CAPAROD','SEXO', 'ALIENTO','CINTURON','ID_EDAD', 'CONDMUERTO',
     'CONDHERIDO','PASAMUERTO', 'PASAHERIDO', 'PEATMUERTO','PEATHERIDO','CICLMUERTO', 'CICLHERIDO', 'OTROMUERTO', 'OTROHERIDO', 'NEMUERTO', 'NEHERIDO','ESTATUS' ],inplace=True)
@@ -48,27 +41,8 @@ def df_2018():
     data_2018['ID_MUNICIPIO'].value_counts().plot(kind='bar')
     plt.show()
     #El municipio con mayor número de accidentes en el Edo de México en el 2018 fue Ecatepec de Morelos
-   #print(data_2018['CLASACC'].value_counts())
-    """filtro1=data_2018[(data_2018['ID_ENTIDAD'] == 15) &  (data_2018['CLASACC'] == "Certificado cero") ].count()
-    filtro2=data_2018[(data_2018['ID_ENTIDAD'] == 15) &  (data_2018['CLASACC'] == "Sólo daños") ].count() 
-    filtro3=data_2018[(data_2018['ID_ENTIDAD'] == 15) &  (data_2018['CLASACC'] == "No fatal") ].count()    
-    filtro4=data_2018[(data_2018['ID_ENTIDAD'] == 15) &  (data_2018['CLASACC'] == "Fatal") ].count() 
-    ##-> Retorna el resultado final de limpieza de accidentes ocurridos en el 2018, estado de México.   
-    print(f'Total de registros de México con Certificado cero: {filtro1}')
-    print(f'Total de registros de México con Sólo daños: {filtro2}')
-    print(f'Total de registros de México con No fatal: {filtro3}')
-    print(f'Total de registros de México con Fatal: {filtro4}')
-    # Crear la figura y los ejes
-    fig, ax = plt.subplots()
-    # Dibujar puntos
-    ax.scatter(x = [0, 1, 2, 3], y = [filtro1, filtro2, filtro3, filtro4])
-    # Guardar el gráfico en formato png
-    plt.savefig('diagrama-dispersion.png')
-    # Mostrar el gráfico
-    plt.show()
-"""
-    
-    #data_2018.to_csv('C:/Users/wendy/Documents/7mo semestre/Almacenes de Datos/proyecto/python/recursos/acc2018.csv', index=False, encoding='latin1')
+    print(data_2018['CLASACC'].value_counts())
+    data_2018.to_csv('C:/Users/wendy/Documents/7mo semestre/Almacenes de Datos/proyecto/python/recursos/acc2018.csv', index=False, encoding='latin1')
     return data_2018
 
 def df_2019():

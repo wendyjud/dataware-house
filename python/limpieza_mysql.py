@@ -35,7 +35,7 @@ def df_2018PM():
     grouped.plot(kind="bar")
    
     plt.show()
-    #data_2018.to_csv('C:/Users/wendy/Documents/7mo semestre/Almacenes de Datos/proyecto/python/recursos/acc2018.csv', index=False, encoding='latin1')
+    data_2018.to_csv('C:/Users/wendy/Documents/7mo semestre/Almacenes de Datos/proyecto/python/recursos/2018pm10.csv', index=False, encoding='latin1')
     return data_2018
 
     
